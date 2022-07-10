@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import Swal from "sweetalert2";
+
 
 export default class Form extends Component
 {
@@ -47,7 +49,19 @@ export default class Form extends Component
     async onSubmit()
     {
         console.log(this.state.phone);
-        await axios.post('http://127.0.0.1:8000/api/phones', this.state.phone);
+        const res = await axios.post('http://127.0.0.1:8000/api/phones', this.state.phone);
+
+        if (res.status === 200) {
+            Swal.fire({
+                icon: "success",
+                text: res.data.message,
+            });
+            return;
+        }
+        Swal.fire({
+            text: res.statusText,
+            icon: "error",
+        });
     }
 
 
