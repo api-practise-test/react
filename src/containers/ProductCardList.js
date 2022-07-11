@@ -16,6 +16,7 @@ export default class ProductCardList extends Component
             keyword: ""
         }
 
+        this.delete = this.delete.bind(this)
         this.getProductsByKeyword = this.getProductsByKeyword.bind(this);
     }
 
@@ -89,20 +90,17 @@ export default class ProductCardList extends Component
         else
         {
             result = this.state.products.map((product, index) => {
+                console.log(product)
                 return <ProductCard
                     onClick={() => this.delete(product.id)}
                     key={index}
-                    phone={product.phone}
-                    description={product.description}
-                    price={product.price}
-                    brand={product.brand.brand}
-                    image={product.image}
+                    product={product}
                 />
             })
         }
 
         return(
-            <div>
+            <div className="product__wrapper">
                 {result}
             </div>
         )

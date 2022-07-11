@@ -78,15 +78,15 @@ export default class Form extends Component
                 <label htmlFor="phone">
                     <span>Phone</span>
                     <input type="text" name="phone" onChange={(event)=>this.handleChange(event)} />
-                </label>
+                </label><br/>
                 <label htmlFor="description">
                     <span>Description</span>
                     <input type="text" name="description" onChange={(event)=>this.handleChange(event)} />
-                </label>
+                </label><br/>
                 <label htmlFor="price">
                     <span>Price</span>
                     <input type="number" name="price" onChange={(event)=>this.handleChange(event)} />
-                </label>
+                </label><br/>
                 <label htmlFor="brand">
                     <span>Brand</span>
                     <select name="brand_id" id="brand_id" onChange={(event)=>this.handleChange(event)}>
@@ -95,11 +95,11 @@ export default class Form extends Component
                                 (<option key={index} checked={index === 0 ? true : false} value={brand.id}>{brand.brand}</option>))
                         }
                     </select>
-                </label>
+                </label><br/>
                 <label htmlFor="image">
                     <span>Image</span>
                     <input type="file" name="image" onChange={(event)=>this.handleChange(event)}/>
-                </label>
+                </label><br/>
                 <button type={"button"} onClick={() => this.onSubmit()}> submit </button>
             </form>
         )
