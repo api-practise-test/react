@@ -13,7 +13,7 @@ export default class Form extends Component
                 phone: "",
                 description: "",
                 price: 0.0,
-                brand_id: 0,
+                brand_id: 1,
                 image: null
             }
         }
@@ -48,8 +48,15 @@ export default class Form extends Component
 
     async onSubmit()
     {
+        const formData = new FormData();
+        const {phone, description, price, brand_id, image} = this.state.phone
+        formData.append("phone", phone)
+        formData.append("description", description)
+        formData.append("brand_id", brand_id)
+        formData.append("price", price)
+        formData.append("image", image)
         console.log(this.state.phone);
-        const res = await axios.post('http://127.0.0.1:8000/api/phones', this.state.phone);
+        const res = await axios.post('http://127.0.0.1:8000/api/phones', formData);
 
         if (res.status === 200) {
             Swal.fire({
@@ -86,7 +93,7 @@ export default class Form extends Component
                     <select name="brand_id" id="brand_id" onChange={(event)=>this.handleChange(event)}>
                         {
                             this.state.brands.map((brand, index) =>
-                                <option key={index} value={brand.id}>{brand.brand}</option>)
+                                (<option key={index} checked={index === 0 ? true : false} value={brand.id}>{brand.brand}</option>))
                         }
                     </select>
                 </label>
