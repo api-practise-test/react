@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import axios from "axios";
 import Swal from "sweetalert2";
 
-
 export default class Form extends Component
 {
     constructor(props) {

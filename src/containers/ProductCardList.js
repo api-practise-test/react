@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ProductCard from "../components/ProductCard";
 import axios from "axios";
+import Swal from "sweetalert2";
 import EventEmitter from "../utils/EventEmitter";
 
 
@@ -32,9 +33,37 @@ export default class ProductCardList extends Component
         await this.initProductsState();
     }
 
-    delete(id)
+    async delete(id)
     {
         console.log(id);
+        const isConfirm = await Swal.fire({
+            title: 'Are you sure?',
+            text: "'You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            return result.isConfirmed
+        });
+
+        if(!isConfirm) {
+            return;
+        }
+        await axios.delete(`http://localhost:8000/api/phones/${id}`).then((data) => {
+            Swal.fire({
+                icon:"success",
+                text:data.message
+            })
+            this.initProductsState()
+        }).catch(({response:{data}}) => {
+            Swal.fire({
+                text:data.message,
+                icon:"error"
+            })
+        })
+
     }
 
     async getProductsByKeyword(eventData)
@@ -55,7 +84,7 @@ export default class ProductCardList extends Component
         let result;
         if(this.state.products === [])
         {
-            result = <div>is loading</div>
+            result = <div>is loading...</div>
         }
         else
         {

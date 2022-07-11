@@ -1,13 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
+
+import { BrowserRouter as Router , Routes, Route, Link } from "react-router-dom";
+
 import Home from "./pages/Home";
 import Form from "./components/Form";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <Form/>
+      {/*<Form/>*/}
+      {/*<Home/>*/}
+      <Router>
+          <Routes>
+              <Route path="/phone/postPhone" element={<Form/>}/>
+              <Route path="/phone/updatePhone/:id" element={<Form/>} />
+              <Route exact path="/phones" element={<Home/>} />
+          </Routes>
+      </Router>
   </React.StrictMode>
 );
 
