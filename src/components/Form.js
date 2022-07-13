@@ -76,7 +76,7 @@ export default class Form extends Component
         return(
             <form encType="mutilpart/form-data" method="post">
                 <label htmlFor="phone">
-                    <span>Phone</span>
+                    <span>Vegetable</span>
                     <input type="text" name="phone" onChange={(event)=>this.handleChange(event)} />
                 </label><br/>
                 <label htmlFor="description">
@@ -88,7 +88,7 @@ export default class Form extends Component
                     <input type="number" name="price" onChange={(event)=>this.handleChange(event)} />
                 </label><br/>
                 <label htmlFor="brand">
-                    <span>Brand</span>
+                    <span>Category</span>
                     <select name="brand_id" id="brand_id" onChange={(event)=>this.handleChange(event)}>
                         {
                             this.state.brands.map((brand, index) =>

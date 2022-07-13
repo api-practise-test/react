@@ -20,12 +20,13 @@ export default function SingleProduct() {
     return phone
         ?
     (
-        <div>
-            <img src={`http://localhost:8000/images/${phone.image}`} alt=""/>
-            <span className="phone__title">{phone.phone}</span>
-            <span>{phone.description}</span>
-            <span className="phone__price">{phone.price}</span>
-            <span>{phone.brand.brand}</span>
+        <div className="singlePage">
+            <img className="image__detail" src={`http://localhost:8000/images/${phone.image}`} alt=""/>
+            <div className="vegetable__info">
+                <span className="vegetable__title">{phone.phone}</span>
+                <span className="price">{phone.price}</span>
+                <span>{phone.description}</span>
+            </div>
         </div>
     ) :
         <div>Loading...</div>

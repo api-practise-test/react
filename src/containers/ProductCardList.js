@@ -3,6 +3,7 @@ import ProductCard from "../components/ProductCard";
 import axios from "axios";
 import Swal from "sweetalert2";
 import EventEmitter from "../utils/EventEmitter";
+import '../asset/css/productCard.css';
 
 
 export default class ProductCardList extends Component
@@ -79,7 +80,18 @@ export default class ProductCardList extends Component
             products: response.data
         });
     }
-
+    async getProductsByPrice(eventData)
+    {
+        const response = await axios.get(`http://127.0.0.1:8000/api/get-phones-by-price`, {
+            params: {
+                price: eventData.price
+            }
+        });
+        console.log(response.data);
+        this.setState({
+            products: response.data
+        });
+    }
     render ()
     {
         let result;

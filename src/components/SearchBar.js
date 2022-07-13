@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import EventEmitter from "../utils/EventEmitter";
-
+import '../asset/css/productCard.css'
 
 export default class SearchBar extends Component
 {
@@ -19,7 +19,9 @@ export default class SearchBar extends Component
     render() {
         return(
             <div >
-                <input id={"search"} type="text" name="search" onChange={(event) => this.onChange(event)} />
+                <label htmlFor="search">
+                    <input className='input__style' id={"search"} type="text" name="search" placeholder='search' onChange={(event) => this.onChange(event)} />
+                </label>
             </div>
         )
     }
